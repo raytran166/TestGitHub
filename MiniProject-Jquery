@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title> Mini ProJect</title>
+	<link rel="stylesheet" href="">
+	<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+	<style type="text/css">
+	#wrapper{
+		margin:0 auto;
+		width:500px;
+		font-family: helvetica;
+		font-size: 16px;
+
+	}
+	.input{
+		width:300px;
+		margin-bottom: 10px;
+		border-radius: 5px;
+		border: 2px solid grey;
+		padding: 3px 0 5px 0;
+
+	}
+	.label{
+		width:200px;
+		font-family: helvetica;
+		font-size: 16px;
+		padding-bottom: 8px;
+	}
+	#submit{
+		width:100px;
+		height:30px;
+		border-radius: 5px;
+		border: 2px solid grey;
+		padding: 3px 0 5px 0;
+		margin-left: 80px;
+
+	}
+	#submit:hover{
+		color:orange;
+	}
+	#error{
+		color:red;
+		text-align: center;
+		margin-bottom: 10px;
+	}
+	table{
+		background-color: pink;
+	}
+
+	</style>
+</head>
+<body>
+
+<div id="wrapper">
+	<div id="error"> ok </div>
+	<form id="validatedForm">
+	<table>
+		<tr>
+			<td class="label">Email</td> 
+			<td><input name="email" id="email"class="input"></td>
+		</tr>
+		<tr>
+			<td class="label">Phone</td>
+			<td><input name="phone" id="phone" class="input"></td>
+		</tr>
+		<tr>
+			<td class="label">Password</td>
+			<td><input name="pass" id="pass1" type="password" class="input"></td>
+		</tr>
+		<tr>
+			<td class="label">Confirm Password</td> 
+			<td><input name="pass" id="pass2" type="password" class="input"></td>
+		</tr>
+		<tr>
+			<td> </td> 
+			<td><input name="submit" type="submit"  id="submit"></td>
+		</tr>
+	
+	</table>
+	</form>
+</div>
+	<script>
+		$("#validatedForm").submit(function(event){
+			event.preventDefault();
+			var errormsg;
+
+			function isValidEmailAddress(emailAddress) {
+    			var pattern = new RegExp(/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i);
+    			return pattern.test(emailAddress);
+			}
+			
+			if(!isValidEmailAddress($("#email").val())){
+				errormsg = "Please enter a valid email address.";
+
+			}
+			 if(!$.isNumeric($("#phone").val())){
+				 errormsg =  errormsg + "<br/> Please enter a valid phone number.";
+
+			}
+			if($("#pass1").val()==""){
+				errormsg  =  errormsg + "</br>Please enter a valid passwords.";
+			}
+			if($("#pass1").val() != $("#pass2").val()){
+			 errormsg  =  errormsg + "</br>Please enter matching passwords.<br/>";
+
+			}
+			if(errormsg==null) {
+				alert("Sucessfully Enter");
+			}else{
+				$("#error").html(errormsg);	
+			}
+			
+		});
+
+
+
+	</script>
+</body>
+</html>

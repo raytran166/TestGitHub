@@ -1,1 +1,65 @@
+<?php 
+ob_start();
+session_start();
+include("config.php");
+include("lib/connect_db.php");
+include("lib/function.php");
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Vnexpress - Khoa Phạm</title>
+	<!-- Style CSS -->
+	<link type="text/css" rel="stylesheet" href="template/css/style.css" />
+	
+</head>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<body>
+<?php include("blocks/header.php"); ?>
+<div class="clear"></div>
+<div id="wrapper">
+	<div id="wrapper_index">
+		<?php include("blocks/logo.php"); ?>
+		<div class="clear"></div>
+		<?php include("blocks/menu.php"); ?>
+		<div class="clear"></div>
+		<?php include("blocks/breadcurmb.php"); ?>
+		<div class="clear"></div>
+		<!-- Start Pages -->
+		<?php 
+		if (isset($_GET["p"])) {
+			$p = $_GET["p"];
+			if ($p == "trang-chu") {
+				include ("pages/trangchu.php");
+			} elseif ($p == "chi-tiet-tin") {
+				include("pages/chitiettin.php");
+			} elseif ($p == "loai-tin") {
+				include("pages/loaitin.php");
+			} elseif ($p == "dang-ky-thanh-vien") {
+				include("pages/dangkythanhvien.php");
+			} elseif ($p == "login") {
+				include("pages/login.php");
+			} else {
+				include ("pages/trangchu.php");
+			}
+		} else {
+			include ("pages/trangchu.php");
+		}
+		?>
+		<!-- End Pages -->
+		<div class="clear"></div>
+		<?php include("blocks/footer.php"); ?>
+	</div>
+</div>
 
+</body>
+</html>
